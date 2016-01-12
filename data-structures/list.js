@@ -59,6 +59,7 @@ List.prototype.toString = function() {
  */
 List.prototype.append = function(element) {
   this.dataStore.push(element);
+  return true;
 };
 
 /**
