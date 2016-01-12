@@ -8,32 +8,15 @@
 
 <body>
   <script type="text/javascript">
-  /* extend list */
-  List.prototype.insertOnlyLarger = function(element, after) {
-    var context = this;
-    var result = false;
-    var insertPos = this.find(after);
-    if (insertPos > -1) {
-      var greater = true;
-      context.dataStore.forEach(function(item) {
-        if (element < item) {
-          greater = false;
-        }
-      });
-      if (greater) {
-        context.dataStore.splice(insertPos + 1, 0, element);
-        result = true;
-      }
-    }
-    return result;
+  var Person = function(name, gender) {
+    this.name = name;
+    this.gender = gender;
+    this.toString = function() {
+      return this.name + ' ' + this.gender;
+    };
   };
 
   var list = new List();
-
-  list.append(1);
-  list.append(2);
-  list.append(3);
-  list.append(9);
   </script>
 </body>
 

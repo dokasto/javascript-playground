@@ -111,3 +111,40 @@ List.prototype.contains = function(element) {
   }
   return false;
 };
+
+/* List extenstions */
+List.prototype.insertOnlyLarger = function(element, after) {
+  var context = this;
+  var result = false;
+  var insertPos = this.find(after);
+  if (insertPos > -1) {
+    var greater = true;
+    context.dataStore.forEach(function(item) {
+      if (element < item) {
+        greater = false;
+      }
+    });
+    if (greater) {
+      context.dataStore.splice(insertPos + 1, 0, element);
+      result = true;
+    }
+  }
+  return result;
+};
+
+/**
+ * Get a particular gender in
+ * a list of person objects containing
+ * their name and gender
+ */
+List.prototype.getGender = function(gender) {
+  // Assume this list contains a list of persons
+  // objects Person(name, gender)
+  var select = [];
+  this.dataStore.forEach(function(person) {
+    if (person.gender == gender) {
+      select.push(person.toString());
+    }
+  });
+  return select.join();
+};
