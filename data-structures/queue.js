@@ -5,6 +5,10 @@ var Queue = function() {
   this.dataStore = [];
 };
 
+Queue.prototype.length = function() {
+  return this.dataStore.length;
+};
+
 /**
  * Add an element to the end of the queue
  */
@@ -31,7 +35,7 @@ Queue.prototype.back = function() {
 Queue.prototype.toString = function() {
   var result = "";
   this.dataStore.forEach(function(item) {
-    result += item + "\n";
+    result += item;
   });
   return result;
 };
@@ -42,6 +46,21 @@ Queue.prototype.empty = function() {
   } else {
     return false;
   }
+};
+
+/**
+ * Add an element to the front of the queue
+ */
+Queue.prototype.pushToFront = function(element) {
+  this.dataStore.splice(0, 0, element);
+};
+
+/**
+ * Removes an element from the back of the
+ * queue
+ */
+Queue.prototype.popFromBack = function() {
+  this.dataStore.pop();
 };
 
 /**
@@ -109,3 +128,25 @@ radix.distribute(10, 10);
 radix.collect();
 console.log("\n\nAfter radix sort: ");
 radix.display();
+
+/**
+ * Test if word is a palindrome
+ */
+var isPalindrome = function(word) {
+  var strArr = word.split("");
+  var q = new Queue();
+  var reverse = "";
+  strArr.forEach(function(character) {
+    q.pushToFront(character);
+  });
+  if (word.toLowerCase() == q.toString().toLowerCase()) {
+    console.log(word + " is a palindrome");
+  } else {
+    console.log(word + " is NOT a palindrome");
+  }
+};
+
+var words = ["ada", "jaded", "Rotavator", "christus"];
+words.forEach(function(word) {
+  isPalindrome(word);
+});
