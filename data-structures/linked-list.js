@@ -73,6 +73,7 @@ LList.prototype.remove = function(item) {
  */
 LList.prototype.display = function() {
   var currNode = this.head;
+  console.log("Display nodes");
   while (currNode.next != null) {
     console.log(currNode.next.element);
     currNode = currNode.next;
@@ -146,5 +147,39 @@ DLList.prototype.displayReverse = function() {
   while (currNode.previous != null) {
     console.log(currNode.element);
     currNode = currNode.previous;
+  }
+};
+
+/**
+ * TODO: To be continue
+ * Move current node forrward
+ * @param  {int} n [number of times to move]
+ */
+DLList.prototype.advance = function(n) {
+  currNode = this.head;
+  for (var i = 0; i < n; i++) {
+    if (currNode.next != null) {
+      var nextNode = currNode.next;
+      console.log(nextNode);
+      currNode.next = nextNode.next;
+      console.log(currNode)
+      currNode.previous = nextNode;
+      console.log(currNode);
+    }
+  }
+};
+
+/**
+ * Move current node backwords
+ * @param  {int} n [number of times to move]
+ */
+DLList.prototype.back = function(n) {
+  currNode = this.head;
+  for (var i = 0; i < n; i++) {
+    if (currNode.prev != null) {
+      var nextNode = currNode.prev;
+      currNode.prev = nextNode.prev;
+      currNode.next = nextNode
+    }
   }
 };
