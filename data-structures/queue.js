@@ -114,20 +114,21 @@ RadixSort.prototype.display = function() {
 /**
  * Test Radix sort
  */
-var queues = [];
-for (var i = 0; i < 10; i++) {
-  queues[i] = new Queue();
-}
-var nums = [45, 72, 93, 51, 21, 16, 70, 41, 27, 31];
+(function() {
+  var queues = [];
+  for (var i = 0; i < 10; i++) {
+    queues[i] = new Queue();
+  }
+  var nums = [45, 72, 93, 51, 21, 16, 70, 41, 27, 31];
 
-var radix = new RadixSort(nums, queues);
-
-console.log("Before radix sort: ");
-radix.display();
-radix.distribute(10, 10);
-radix.collect();
-console.log("\n\nAfter radix sort: ");
-radix.display();
+  var radix = new RadixSort(nums, queues);
+  console.log("Before radix sort: ");
+  radix.display();
+  radix.distribute(10, 10);
+  radix.collect();
+  console.log("\n\nAfter radix sort: ");
+  radix.display();
+});
 
 /**
  * Test if word is a palindrome
@@ -148,5 +149,5 @@ var isPalindrome = function(word) {
 
 var words = ["ada", "jaded", "Rotavator", "christus"];
 words.forEach(function(word) {
-  isPalindrome(word);
+  //isPalindrome(word);
 });

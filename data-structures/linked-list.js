@@ -15,11 +15,11 @@ var LList = function() {
 };
 
 /**
- * Find an element
- * @param  {string} elemen
+ * Find an item
+ * @param  {string} t
  * @return {Object}
  */
-LList.prototype.find = function(element) {
+LList.prototype.find = function(item) {
   var currNode = this.head;
   while (currNode.element != item) {
     currNode = currNode.next;
@@ -29,14 +29,16 @@ LList.prototype.find = function(element) {
 
 /**
  * Insert a new item
- * @param  {String} newElement
- * @param  {Object} item       [Item where newelement will be inserted after]
+ * @param  {newElement}
+ * @param  {item}  [parent item or head]
  */
-LList.prototype.insert = function(newElement, item) {
-  var newNode = new this.Node(newelement);
-  var currNode = this.find(item);
-  var newNode.next = currNode.next;
-  currNode.next = newNode;
+LList.prototype.insert = function() {
+  var newElement = arguments[0];
+  var item = arguments[1] || "head";
+  var newNode = new this.Node(newElement);
+  var current = this.find(item);
+  newNode.next = current.next;
+  current.next = newNode;
   return true;
 };
 
