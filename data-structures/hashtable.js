@@ -110,4 +110,4 @@ HashTable.prototype.buildChains = function() {
     hTable.putLinear(name);
   });
   hTable.showCollisions();
-})();
+});
