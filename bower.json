@@ -1,0 +1,11 @@
+{
+  "name": "daily-study",
+  "homepage": "https://github.com/andela-unkwocha/daily-study",
+  "authors": [
+    "Udo"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT"
+}
