@@ -7,5 +7,8 @@
   "description": "",
   "main": "index.html",
   "moduleType": [],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jasmine-core": "jasmine#~2.4.1"
+  }
 }
