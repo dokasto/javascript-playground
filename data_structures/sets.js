@@ -6,11 +6,15 @@ var Set = function() {
 /**
  * Add a new Unique memeber
  */
-this.prototype.add = function(member) {
+Set.prototype.add = function(member) {
   if (this.dataStore.indexOf(member) == -1) {
     return false;
   } else {
     this.dataStore.push(memeber);
+    /* sort after each addition */
+    this.dataStore.sort(function(a, b) {
+      return a - b;
+    });
     return true;
   }
 };
@@ -111,3 +115,7 @@ Set.prototype.difference = function(set) {
 Set.prototype.show = function() {
   return this.dataStore.join();
 };
+
+function helloWorld() {
+  return "Hello world!";
+}
