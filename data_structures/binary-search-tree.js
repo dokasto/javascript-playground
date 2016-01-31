@@ -88,9 +88,28 @@ BST.prototype.postOrder = function(node) {
 };
 
 /**
+ * Get the minimum value in the tree
+ */
+BST.prototype.getMin = function() {
+  var current = this.root;
+  while (current.left !== null) {
+    current = current.left;
+  }
+  return current.data;
+};
+
+BST.prototype.getMax = function() {
+  var current = this.root;
+  while (current.right !== null) {
+    current = current.right;
+  }
+  return current.data;
+};
+
+/**
  * Tests Here
  */
-describe("Should test Binary Search Tree traversal", function() {
+describe("Should test Binary Tree", function() {
   var nums = new BST();
   nums.insert(23);
   nums.insert(45);
@@ -99,13 +118,24 @@ describe("Should test Binary Search Tree traversal", function() {
   nums.insert(3);
   nums.insert(99);
   nums.insert(22);
+
   it("InOrder traversal", function() {
     expect(nums.inOrder(nums.root)).toEqual([3, 16, 22, 23, 37, 45, 99]);
   });
+
   it("PreOrder traversal", function() {
     expect(nums.preOrder(nums.root)).toEqual([23, 16, 3, 22, 45, 37, 99]);
   });
+
   it("PostOrder traversal", function() {
     expect(nums.postOrder(nums.root)).toEqual([3, 22, 16, 37, 99, 45, 23]);
+  });
+
+  it("minimum should return 3", function() {
+    expect(nums.getMin()).toEqual(3);
+  });
+
+  it("maximum should return 99", function() {
+    expect(nums.getMax()).toEqual(99);
   });
 });

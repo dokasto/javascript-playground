@@ -115,7 +115,3 @@ Set.prototype.difference = function(set) {
 Set.prototype.show = function() {
   return this.dataStore.join();
 };
-
-function helloWorld() {
-  return "Hello world!";
-}
