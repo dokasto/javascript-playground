@@ -18,9 +18,11 @@ function Graph(v) {
   this.vertices = v;
   this.edges = 0;
   this.adj = [];
+  this.marked = [];
   for (var i = 0; i < this.vertices; i++) {
     this.adj[i] = [];
     this.adj[i].push("");
+    this.marked[i] = false;
   }
 }
 
@@ -46,6 +48,23 @@ Graph.prototype.show = function() {
       if (this.adj[i][j] !== undefined) {
         console.log(this.adj[i][j] + ' ');
       }
+    }
+  }
+};
+
+
+/**
+ * Depth First Search Algorithm
+ * @param  {Object} v
+ */
+Graph.prototype.dfs = function(v) {
+  this.marked[v] = true;
+  if (this.adj[v] !== undefined) {
+    console.log('Visited vertex ' + v);
+  }
+  for (var w in this.adj[v]) {
+    if (!this.marked[w]) {
+      this.dfs(w);
     }
   }
 };
