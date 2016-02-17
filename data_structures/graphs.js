@@ -80,4 +80,4 @@ Graph.prototype.dfs = function(v) {
   g.addEdge(2, 4);
   g.show();
   g.dfs(0);
-})();
+});

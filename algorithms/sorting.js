@@ -30,7 +30,7 @@ CArray.prototype.insert = function(element) {
 
 CArray.prototype.toString = function() {
   var retstr = '';
-  for (var i = 0; i < this.dataStore.length; ++i) {
+  for (var i = 0; i < this.dataStore.length; i++) {
     retstr += this.dataStore[i] + ' ';
     if (i > 0 && i % 10 == 0) {
       retstr += '\n';
@@ -44,3 +44,23 @@ CArray.prototype.swap = function(arr, index1, index2) {
   arr[index1] = arr[index2];
   arr[index2] = temp;
 };
+
+CArray.prototype.bubbleSort = function() {
+  var numElements = this.dataStore.length;
+  for (var outer = numElements; outer >= 2; outer--) {
+    for (var inner = 0; inner <= outer - 1; inner++) {
+      if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+        this.swap(this.dataStore, inner, inner + 1);
+      }
+    }
+  }
+};
+
+(function() {
+  var numElements = 10;
+  var myNums = new CArray(numElements);
+  myNums.setData();
+  console.log(myNums.toString());
+  myNums.bubbleSort();
+  console.log(myNums.toString());
+})();
