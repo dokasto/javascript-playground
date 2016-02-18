@@ -56,11 +56,24 @@ CArray.prototype.bubbleSort = function() {
   }
 };
 
+CArray.prototype.selectionSort = function() {
+  var min, temp;
+  for (var outer = 0; outer <= this.dataStore.length - 2; outer++) {
+    min = outer;
+    for (var inner = outer + 1; inner <= this.dataStore.length - 1; inner++) {
+      if (this.dataStore[inner] < this.dataStore[min]) {
+        min = inner;
+      }
+      this.swap(this.dataStore, outer, min);
+    }
+  }
+};
+
 (function() {
   var numElements = 10;
   var myNums = new CArray(numElements);
   myNums.setData();
   console.log(myNums.toString());
-  myNums.bubbleSort();
+  myNums.selectionSort();
   console.log(myNums.toString());
 })();
