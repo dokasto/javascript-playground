@@ -127,7 +127,7 @@ BST.prototype.find = function(data) {
 /**
  * Tests Here
  */
-describe("Should test Binary Tree", function() {
+describe('Should test Binary Tree', function() {
   var nums = new BST();
   nums.insert(23);
   nums.insert(45);
@@ -137,23 +137,23 @@ describe("Should test Binary Tree", function() {
   nums.insert(99);
   nums.insert(22);
 
-  it("InOrder traversal", function() {
+  it('InOrder traversal', function() {
     expect(nums.inOrder(nums.root)).toEqual([3, 16, 22, 23, 37, 45, 99]);
   });
 
-  it("PreOrder traversal", function() {
+  it('PreOrder traversal', function() {
     expect(nums.preOrder(nums.root)).toEqual([23, 16, 3, 22, 45, 37, 99]);
   });
 
-  it("PostOrder traversal", function() {
+  it('PostOrder traversal', function() {
     expect(nums.postOrder(nums.root)).toEqual([3, 22, 16, 37, 99, 45, 23]);
   });
 
-  it("minimum should return 3", function() {
+  it('minimum should return 3', function() {
     expect(nums.getMin()).toEqual(3);
   });
 
-  it("maximum should return 99", function() {
+  it('maximum should return 99', function() {
     expect(nums.getMax()).toEqual(99);
   });
 });
