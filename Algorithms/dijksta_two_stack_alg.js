@@ -64,7 +64,7 @@ var compute = function(mathOperation) {
 
 describe('Should test Dijkstra\'s two stack algoritm', function() {
 
-  it('computes', function() {
+  it('compute', function() {
     var operation = '( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )';
     expect(compute(operation)).toEqual(101);
   });
