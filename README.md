@@ -11,3 +11,4 @@
 - Search
 - Artificial Intelligence
 - Machine Learning (Implementations)
+- HTML5 DOM
