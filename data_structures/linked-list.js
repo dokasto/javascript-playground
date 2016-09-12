@@ -80,18 +80,6 @@ LList.prototype.display = function() {
   }
 };
 
-/**
- * Advance n nodes forwared
- * @param  {int} n [number of steps to move]
- */
-LList.prototype.advance = function(n) {
-  for (var i = 0; i < n; i++) {
-
-  }
-
-};
-
-
 
 /**
  * Double Linked List Implementation
