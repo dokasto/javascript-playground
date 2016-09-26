@@ -48,6 +48,15 @@
     };
   };
 
+  const isPrime = function(number) {
+    for (let i = 2; i <= number; i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return number > 1;
+  };
+
   describe('Should get all Prime numbers with Sieve of Eratosthenes in 400', function() {
 
     it('Sum should be 78', function() {
