@@ -1,5 +1,5 @@
 /**
- * This shows the different type of inheritance in Javascript
+ * This shows the different types of inheritance in Javascript
  * - Classical inheritance
  * - Prototypical inheritance [Recommended]
  *
