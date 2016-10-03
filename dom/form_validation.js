@@ -1,10 +1,12 @@
 /**
  * Extensible form validation techniques for multiple forms
+ * USAGE onsubmit="validateForm(event, this);"
  */
 
 function validateForm(e, form) {
   let isValid = true;
-  let inputs = document.querySelectorAll('#' + form.id + ' .input');
+  let $inputs = document.querySelectorAll('#' + form.id + ' .input');
+  let $errorDiv = document.querySelector('#' + form.id + ' .error');
   let errors = [];
 
   /**
@@ -39,8 +41,8 @@ function validateForm(e, form) {
   };
 
 
-  for (let i = 0; i < inputs.length; i++) {
-    let input = inputs[i];
+  for (let i = 0; i < $inputs.length; i++) {
+    let input = $inputs[i];
     let type = input.getAttribute('type');
     let isRequired = input.getAttribute('data-required') === 'true' ? true : false;
     let shouldValidate = input.getAttribute('data-validate') === 'true' ? true : false;
@@ -64,7 +66,8 @@ function validateForm(e, form) {
     return true;
   } else {
     e.preventDefault();
-    document.querySelector('#' + form.id + ' .error').innerHTML = errorHTMl(errors);
+    $errorDiv.innerHTML = '';
+    $errorDiv.appendChild(errorHTMl(errors));
     return false;
   }
 }
