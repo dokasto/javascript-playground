@@ -24,6 +24,15 @@
 </head>
 
 <body>
+  <form id="myForm" method="POST" action="stuff.php" onsubmit="validateForm(event, this);">
+    <span class="error"></span>
+    <input type="text" class="input" name="name" data-required="true" data-error="please enter a valid name">
+    <input type="text" class="input" name="surname" data-required="false">
+    <input type="email" class="input" name="email" data-required="true" data-validate="true" data-error="please enter a valid email">
+    <input type="tel" class="input" name="phone" data-required="true" data-error="please enter a valid phone">
+    <button type="submit">Submit</button>
+  </form>
+  <script type="text/javascript" src="./dom/form_validation.js"></script>
   <script type="text/javascript" src="./dom/tooltip.js"></script>
   <script type="text/javascript" src="./dom/traverse.js"></script>
 </body>
