@@ -1,4 +1,4 @@
-# Daily Study Objectives
+# Outline
 
 - Data structures
 - Algorithms
