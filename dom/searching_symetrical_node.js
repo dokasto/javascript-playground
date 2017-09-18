@@ -43,7 +43,7 @@
 	}
 
 	/**
-	 * Get the position of a node in it's parent
+	 * Get the position of a child node in it's parent
 	 * @param {*} child 
 	 * @param {*} parent 
 	 */

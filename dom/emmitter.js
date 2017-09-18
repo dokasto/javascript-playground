@@ -1,7 +1,6 @@
 /**
  * Simple Emitter class
  */
-
 function Emmitter() {
 	let subscriptions = {};
 
