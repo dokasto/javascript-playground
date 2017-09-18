@@ -1,4 +1,4 @@
-# Outline
+# Outline 
 
 - Data structures
 - Algorithms
