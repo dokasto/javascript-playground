@@ -49,7 +49,57 @@ const isSorted = arr => {
 	return true;
 };
 
-const filter = () => {};
+const filter = (arr, fn) => {
+	let result = [];
+	arr.forEach(each => {
+		if (fn(each)) result.push(each);
+	});
+	return result;
+};
+
+const reduce = (arr, fn, initial) => {
+	let accumulator = initial;
+	arr.forEach((each, i) => {
+		accumulator = fn(accumulator, each);
+	});
+	return accumulator;
+};
+
+const reverse = str =>
+	str
+		.split('')
+		.reverse()
+		.join('');
+
+const indexOf = (array, element) => {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] === element) return i;
+	}
+	return -1;
+};
+
+const isAPalindrome = str => str === reverse(str);
+
+const missing = arr => {
+	let n = arr.sort()[arr.length - 1];
+	let total = n * (n + 1) / 2;
+	let sum = arr.reduce((a, b) => a + b, 0);
+	return total - sum;
+};
+
+const isBalanced = str => {
+	if (str.charAt(0) === '}') return false;
+
+	let opened = 0;
+	let closed = 0;
+
+	for (let char of str) {
+		if (char === '{') opened++;
+		if (char === '}') closed++;
+	}
+
+	return opened === closed;
+};
 
 describe('Random algorithms', function() {
 	it(`3 is a prime number`, function() {
@@ -67,5 +117,34 @@ describe('Random algorithms', function() {
 	it('Array is sorted', () => {
 		expect(isSorted([3, 9, -3, 10])).toEqual(false);
 		expect(isSorted([[-5, 0, 3, 9]])).toEqual(true);
+	});
+
+	it('Filter array', () => {
+		expect(filter([1, 2, 3, 4], n => n < 3)).toEqual([1, 2]);
+	});
+
+	it('Reduce arrays', () => {
+		expect(reduce([1, 2, 3, 4], (a, b) => a + b, 0)).toEqual(10);
+	});
+
+	it('Reverse string', () => {
+		expect(reverse('abcdef')).toEqual('fedcba');
+	});
+
+	it('Find index of element in number', () => {
+		expect(indexOf([1, 2, 3], 1)).toEqual(0);
+	});
+
+	it('Check if string is Palindrome', () => {
+		expect(isAPalindrome('abcdcba')).toEqual(true);
+	});
+
+	it('Missing number in [5, 1, 4, 2] shouild be 3', () => {
+		expect(missing([5, 1, 4, 2])).toEqual(3);
+	});
+
+	it('Check if brackets are balanced', () => {
+		expect(isBalanced('foo { bar { baz } boo }')).toEqual(true);
+		expect(isBalanced('foo { bar { baz }')).toEqual(false);
 	});
 });
