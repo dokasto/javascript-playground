@@ -1,0 +1,20 @@
+{
+	"name": "daily-study",
+	"version": "1.0.0",
+	"description": "CS study topics",
+	"main": "index.js",
+	"scripts": {
+		"start": "python -m SimpleHTTPServer",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andela-unkwocha/daily-study.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/andela-unkwocha/daily-study/issues"
+	},
+	"homepage": "https://github.com/andela-unkwocha/daily-study#readme"
+}
