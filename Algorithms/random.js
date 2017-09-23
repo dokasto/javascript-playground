@@ -109,6 +109,27 @@ const isBalanced = str => {
 	return opened === closed;
 };
 
+const multipleBalanced = str => {
+	// {} () []
+	let holder = [];
+	const charArr = str.split('');
+
+	charArr.forEach(char => {
+		let lastIndex = holder.length - 1;
+		if (char === '{' || char === '(' || char === '[') {
+			holder.push(char);
+		} else if (
+			(char === '}' && holder[lastIndex] === '{') ||
+			(char === ')' && holder[lastIndex] === '(') ||
+			(char === ']' && holder[lastIndex] === '[')
+		) {
+			holder.splice(lastIndex, 1);
+		}
+	});
+
+	return holder.length === 0;
+};
+
 describe('Random algorithms', function() {
 	it(`3 is a prime number`, function() {
 		expect(isPrime(3)).toEqual(true);
@@ -154,5 +175,10 @@ describe('Random algorithms', function() {
 	it('Check if brackets are balanced', () => {
 		expect(isBalanced('foo { bar { baz } boo }')).toEqual(true);
 		expect(isBalanced('foo { bar { baz }')).toEqual(false);
+	});
+
+	it('Check if multiple [] {} () are balanced', () => {
+		expect(multipleBalanced('(foo { bar (baz) [boo] })')).toEqual(true);
+		expect(multipleBalanced('foo { (bar [baz] } )')).toEqual(false);
 	});
 });
