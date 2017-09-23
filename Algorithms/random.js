@@ -37,9 +37,17 @@ const isPrime = n => {
 };
 
 const fib = n => {
-	if (n <= 0) return 0;
-	if (n === 1) return 1;
-	return fib(n - 1) + fib(n - 2);
+	let cache = {};
+
+	const fn = n => {
+		if (cache[n]) return cache[n];
+		if (n <= 0) return 0;
+		if (n === 1) return 1;
+		cache[n] = fn(n - 1) + fn(n - 2);
+		return cache[n];
+	};
+
+	return fn(n);
 };
 
 const isSorted = arr => {
