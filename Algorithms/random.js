@@ -130,6 +130,50 @@ const multipleBalanced = str => {
 	return holder.length === 0;
 };
 
+const intersection = (firstArr, secondArr) => {
+	let bigArr,
+		smallArr,
+		intersect = [];
+
+	if (firstArr.length > secondArr.length) {
+		bigArr = firstArr;
+		smallArr = secondArr;
+	} else {
+		bigArr = secondArr;
+		smallArr = firstArr;
+	}
+
+	bigArr.forEach(i => {
+		smallArr.forEach(j => {
+			if (i === j) intersect.push(j);
+		});
+	});
+
+	return intersect;
+};
+
+const sort = arr => {};
+
+const getAnagrams = word => {
+	let listOfAnagrams = [];
+
+	const genAnagrams = (word, anagram = '') => {
+		if (!word) {
+			listOfAnagrams.push(anagram);
+			return;
+		}
+		for (let i = 0; i < word.length; i++) {
+			anagram += word[i];
+			genAnagrams(word.slice(0, i) + word.slice(i + 1), anagram);
+			anagram = anagram.slice(0, anagram.length - 1);
+		}
+	};
+
+	genAnagrams(word);
+
+	return listOfAnagrams;
+};
+
 describe('Random algorithms', function() {
 	it(`3 is a prime number`, function() {
 		expect(isPrime(3)).toEqual(true);
@@ -180,5 +224,10 @@ describe('Random algorithms', function() {
 	it('Check if multiple [] {} () are balanced', () => {
 		expect(multipleBalanced('(foo { bar (baz) [boo] })')).toEqual(true);
 		expect(multipleBalanced('foo { (bar [baz] } )')).toEqual(false);
+	});
+
+	it('intersection([1, 5, 4, 2], [8, 91, 4, 1, 3]) should be [4, 1]', () => {
+		expect(intersection([1, 5, 4, 2], [8, 91, 4, 1, 3])).toEqual([4, 1]);
+		expect(intersection([1, 5, 4, 2], [7, 12])).toEqual([]);
 	});
 });
