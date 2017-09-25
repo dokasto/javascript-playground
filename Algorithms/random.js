@@ -152,27 +152,25 @@ const intersection = (firstArr, secondArr) => {
 	return intersect;
 };
 
-const sort = arr => {};
-
-const getAnagrams = word => {
-	let listOfAnagrams = [];
-
-	const genAnagrams = (word, anagram = '') => {
-		if (!word) {
-			listOfAnagrams.push(anagram);
-			return;
+function assignDeep(target, ...sources) {
+	for (let source of sources) {
+		for (let key in source) {
+			if (isObject(source[key])) {
+				if (!isObject(target[key])) {
+					target[key] = {};
+				}
+				assignDeep(target[key], source[key]);
+			} else {
+				target[key] = source[key];
+			}
 		}
-		for (let i = 0; i < word.length; i++) {
-			anagram += word[i];
-			genAnagrams(word.slice(0, i) + word.slice(i + 1), anagram);
-			anagram = anagram.slice(0, anagram.length - 1);
-		}
-	};
+	}
+	return target;
+}
 
-	genAnagrams(word);
-
-	return listOfAnagrams;
-};
+function isObject(a) {
+	return typeof a === 'object' && a !== null;
+}
 
 describe('Random algorithms', function() {
 	it(`3 is a prime number`, function() {
@@ -229,5 +227,12 @@ describe('Random algorithms', function() {
 	it('intersection([1, 5, 4, 2], [8, 91, 4, 1, 3]) should be [4, 1]', () => {
 		expect(intersection([1, 5, 4, 2], [8, 91, 4, 1, 3])).toEqual([4, 1]);
 		expect(intersection([1, 5, 4, 2], [7, 12])).toEqual([]);
+	});
+
+	it('deep assign', () => {
+		//expect(assignDeep({ a: 1 }, {})).toEqual({ a: 1 });
+		//expect(assignDeep({ a: 1 }, { a: 2 })).toEqual({ a: 2 });
+		//expect(assignDeep({ a: 1 }, { a: { b: 2 } })).toEqual({ a: { b: 2 } });
+		expect(assignDeep({ a: { b: { c: 1 } } }, { a: { b: { d: 2 } }, e: 3 })).toEqual({ a: { b: { c: 1, d: 2 } }, e: 3 });
 	});
 });
