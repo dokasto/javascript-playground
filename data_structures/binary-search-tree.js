@@ -53,4 +53,24 @@ function Node(nodeData) {
 			right.printInOrder();
 		}
 	};
+
+	this.printPreOrder = () => {
+		document.write(data);
+		if (left !== null) {
+			left.printInOrder();
+		}
+		if (right !== null) {
+			right.printInOrder();
+		}
+	};
+
+	this.postOrder = () => {
+		if (left !== null) {
+			left.printInOrder();
+		}
+		if (right !== null) {
+			right.printInOrder();
+		}
+		document.write(data);
+	};
 }
