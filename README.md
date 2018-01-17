@@ -1,6 +1,6 @@
 # Javascript Playground
 
-* DOM Manipulaton
+* DOM Manipulation
 * Data structures
 * Algorithms
 * Object Oriented Programming (OOP)
