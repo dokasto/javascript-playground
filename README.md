@@ -1,6 +1,8 @@
-# Outline 
+# Javascript Playground
 
-- Data structures
-- Algorithms
-- Javascript concepts
-- Design Patterns
+* DOM Manipulaton
+* Data structures
+* Algorithms
+* Object Oriented Programming (OOP)
+* Design Patterns
+* System Design
