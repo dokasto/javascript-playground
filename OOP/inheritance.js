@@ -6,21 +6,20 @@
  * Favor object composition over inheritance - Erric Elliot
  */
 
-
 /**
  * Classical inheritance
  */
 
 function Animal(name) {
-  this.name = name;
+	this.name = name;
 }
 
 Animal.prototype.getName = function() {
-  return this.name;
+	return this.name;
 };
 
 function Dog() {
-  Animal.apply(this, arguments);
+	Animal.apply(this, arguments);
 }
 
 Dog.prototype = Object.create(Animal.prototype);
@@ -29,26 +28,25 @@ Dog.prototype.constructor = Dog;
 
 /***** is this ☝ just crazy :( ***/
 
-
 /**
  * Prototypical inheritance
  */
 
 const Vehicle = {
-  create: function(name) {
-    var self = this;
-    self.name = name;
-    return self;
-  },
-  getName: function() {
-    return this.name;
-  }
+	create: function(name) {
+		var self = this;
+		self.name = name;
+		return self;
+	},
+	getName: function() {
+		return this.name;
+	}
 };
 
 const Bus = Object.create(Vehicle);
 
 Bus.create = function(name) {
-  return Vehicle.create.call(this, name);
+	return Vehicle.create.call(this, name);
 };
 
 /**
@@ -58,3 +56,25 @@ let saloonCar = Bus.create('Honda');
 // saloonCar.getName();
 
 /***** better right ☝ I know :) ***/
+
+class Square {
+	constructor(size) {
+		this.size = size;
+	}
+
+	area() {
+		return Math.pow(this.size, 2);
+	}
+}
+
+class Rectangle extends Square {
+	constructor(lenth, breadth) {
+		super(length);
+		this.length = length;
+		this.breadth = breadth;
+	}
+
+	area() {
+		return this.length * this.breadth;
+	}
+}
