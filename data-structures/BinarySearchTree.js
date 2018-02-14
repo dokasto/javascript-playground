@@ -115,6 +115,10 @@ class BinarySearchTree {
 		}
 	}
 
+	validate() {
+		
+	}
+
 	checkIfFull() {
 
 	}
