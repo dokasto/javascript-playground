@@ -71,9 +71,43 @@ class BinarySearchTree {
 		}
 	}
 
+	minNode(node) {
+		if(!node) return null;
+		const values = [];
+
+		const recurse = (node) => {
+			if(node && node.value) values.push(value);
+			if (node.left) recurse(node.left);
+		};
+
+		recurse(node);
+
+		return Math.min(values);
+	}
+
 	deleteNode(value) {
 		if(value === this.value) {
-			// delete this node
+
+			// If node is a leaf
+			if(!this.left && !this.right) this = null;
+
+			// If it has only one node at the left
+			if(this.left && !this.right) {
+				this = this.left;
+			}
+
+			// If it has only one node at the right
+			if(!this.left && this.right) {
+				this = this.right;
+			}
+
+			// If it has two child nodes
+			if(this.left && this.right) {
+				const minValue = this.minNode(this.right);
+				this.value = minValue;
+				this.right.deleteNode(minValue);
+			}
+
 		} else if (value < this.value) {
 			if (this.left) this.left.deleteNode(value);
 		} else if (value > this.value) {
