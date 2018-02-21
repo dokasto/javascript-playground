@@ -42,6 +42,15 @@ class Graph {
 		return visited;
 	}
 
+	traverseBreadthFirst() {
+		// loop through each key
+		// store in visited array
+		// push all children to toBeVisitedArray;
+		// after loop has aended
+		// Itereate over toBeVisitedArray
+		// make sure to exclude items that has been visited before
+	}
+
 }
 
 const graph = new Graph();
