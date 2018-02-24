@@ -1,41 +1,22 @@
-/**
- * Insertion sort
- */
+const array = [1, 6, 8, 2, 5];
 
- const insertion = list => {
-	let position = 1;
-	let isSorted = false;
-	let current;
-	let unsorted;
-	let swapped;
-	while(!isSorted) {
-		console.log(`Step --  ${position}`);
-		isSorted = true;
-		current = list[position];
-		unsorted = list.slice(0, position);
-		console.log('list before', list);
-		console.log('current', current);
-		console.log('unsorted', unsorted);
-		swapped = false;
-		unsorted.forEach((item, itemIndex) => {
-			if(current < item && !swapped) {
-				let positionOfCurrent = list.indexOf(current);
-				let positionOfBigger = list.indexOf(item);
-				// swap
-				list[positionOfBigger] = current;
-				list[positionOfCurrent] = item;
-				isSorted = false;
-				swapped = true;
-			}
-		});
-		if(position === list.length - 1) {
-			position = 1;
-		} else {
-			position++;
-		}
-	}
-	return list;
- };
-
-
- console.log(insertion([10,4,445,9,3,222,6]));
+const insertionSort = list => {
+  let position = 1;
+  let sorted;
+  let unsorted;
+  let current;
+  
+  while(position < list.length) {
+    sorted = list.slice(0, position);
+    unsorted = list.slice(position);
+    current = unsorted[0];
+    sorted.forEach((item, i) => {
+      if (current < item) {
+        list.splice(list.indexOf(current), 1);
+        list.splice(i - 1, 0, current);
+      }
+    });
+    position++;
+  }
+  return list;
+};
