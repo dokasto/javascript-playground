@@ -1,22 +1,17 @@
 const array = [1, 6, 8, 2, 5];
 
-const insertionSort = list => {
-  let position = 1;
-  let sorted;
-  let unsorted;
-  let current;
-  
-  while(position < list.length) {
-    sorted = list.slice(0, position);
-    unsorted = list.slice(position);
-    current = unsorted[0];
-    sorted.forEach((item, i) => {
-      if (current < item) {
-        list.splice(list.indexOf(current), 1);
-        list.splice(i - 1, 0, current);
-      }
-    });
-    position++;
-  }
-  return list;
+
+const insertionSort = arr => {
+ for (let i = 0; i < arr.length; i++) {
+   let temp = arr[i];
+   let j= i - 1;
+   while(j >= 0 && arr[j] > temp) {
+     arr[j + 1] = arr[j];
+     j--;
+   }
+   arr[j + 1] = temp;
+ }
+  return arr;
 };
+
+console.log(insertionSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]));
