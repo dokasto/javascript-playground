@@ -37,10 +37,10 @@ class MinHeap {
     while(this.heap[idx] >= this.heap[left] || this.heap[idx] >= this.heap[right]) {
       if(this.heap[left] < this.heap[right]) {
         [this.heap[left], this.heap[idx]] = [this.heap[idx], this.heap[left]];
-        left = idx * 2;
+        idx = idx * 2;
       } else {
         [this.heap[right], this.heap[idx]] = [this.heap[idx], this.heap[right]];
-        right = (idx * 2) + 1;
+        idx = (idx * 2) + 1;
       }
       
       left = idx * 2;
