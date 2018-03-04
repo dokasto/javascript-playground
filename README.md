@@ -1,8 +1,10 @@
 # Javascript Playground
 
-* DOM Manipulation
-* Data structures
 * Algorithms
-* Object Oriented Programming (OOP)
+* Data structures
 * Design Patterns
+* Document Object Model
+* Dynamic Programming
+* Numerical Analysis
+* Object Oriented Programming
 * System Design
