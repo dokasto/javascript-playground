@@ -9,6 +9,6 @@ const optimizedFib = n => {
 	const cache = {};
 	if (n < 2) return n;
 	if (cache[n]) return cache[n];
-	cache[n] = fib(n-1) + fib(n-2);
+	cache[n] = optimizedFib(n-1) + optimizedFib(n-2);
 	return cache[n];
 };
