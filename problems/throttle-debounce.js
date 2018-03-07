@@ -17,7 +17,11 @@ const throttle = (fn, delay) => {
 
 	return (...args) => {
 		const now = new Date().now();
-		const later = () => fn.apply(this, args);
+
+		const later = () => {
+			lastTime = null;
+			fn.apply(this, args);
+		};
 
 		if (lastTime && now - lastTime > delay) {
 			clearTimeout(timeout);
@@ -25,8 +29,7 @@ const throttle = (fn, delay) => {
 			timeout = setTimeout(later, delay);
 		}
 
-		if(!timeout && !lastTime) {
-			lastTime = new Date().now();
+		if(!lastTime) {
 			timeout = setTimeout(later, delay);
 		}
 
