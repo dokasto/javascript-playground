@@ -4,9 +4,7 @@ Given an input array and another array that describes a new  index for each elem
 
 const reIndex = (inputArray, indexArray) => {
   
-  const isInCorrectPos = index => {
-    return index === indexArray[index];
-  };
+  const isInCorrectPos = index => index === indexArray[index];
   
   const visited = new Set();
   
@@ -21,12 +19,9 @@ const reIndex = (inputArray, indexArray) => {
       const correctIndex = indexArray[i];
       const itemToBeSwapped = inputArray[correctIndex];
       
-      console.log(inputArray, 'swapped', item, itemToBeSwapped);
-      
       inputArray[i] = itemToBeSwapped;
       inputArray[correctIndex] = item;
-      
-      
+       
     }
   }
   
