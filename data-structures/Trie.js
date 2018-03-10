@@ -1,58 +1,88 @@
-class TrieNode {
+class Trie {
   
-  constructor(word, terminating = false) {
-    const chars = word.split('');
-    this.letter = chars[0];
-    this.children = [];
+  constructor(letter=null, terminating=false) {
+    this.letter = letter;
     this.terminating = terminating;
-    
-    if (chars.length > 1) {
-      this.addAlphabet(chars.splice(1), true);
-    }
-    
+    this.children = {};
   }
   
-  addAlphabet(letters, isInitial = false) {
-    const letter = letters[0];
-    
-    if (letters.length === 1) {
-      this.children.push(new TrieNode(letter, true));
-    } else if (letters.length > 1) {
-      if (isInitial) {
-        this.children.push(new TrieNode(letter));
-        this.children[0].addAlphabet(letters.splice(1), isInitial);
-      } else {
-        let exists = this.exists(letter);
-        if (exists === -1) {
-          this.children.push(new TrieNode(letter));
-          this.children[this.children.length - 1].addAlphabet(letters.splice(1), isInitial);
-        } else {
-          this.children[exists].addAlphabet(letters.splice(1), isInitial);
-        }
-      }
-    }
+  fill(...words) {
+    words.forEach(word => this.addWord(word));
   }
-  
-  
-  exists(letter) {
-   let exists = -1;
-    this.children.forEach((child, index) => {
-      if (child.letter === letter) exists = index;
-    });
-    return exists;
-  }
-  
   
   addWord(word) {
+    if(!word) return word;
+    if(this.letter === word[0]) this.addLetters(word.substr(1));
+    this.addLetters(word);
+    return this;
+  }
+  
+  isValid(word) {
     const letters = word.split('');
-    this.addAlphabet(letters[0] === this.letter ? letters.splice(1): letters);
+    let current = this;
+    while(letters.length > 0) {
+      const char = letters.shift();
+      if(current.children[char]) {
+        current = current.children[char];
+      } else {
+        return false;
+      }
+    }
+    return current.terminating;
+  }
+  
+  read(prefix) {
+    const letters = prefix.split('');
+    let current = this;
+    
+    while(letters.length > 0) {
+      const letter = letters.shift();
+      if(current.children[letter]) {
+        current = current.children[letter];
+      } else {
+        return null;
+      }
+    }
+    
+    return Array.from(this.words(current)).map(each => `${prefix.slice(0, -1)}${each}`);
+  }
+  
+  words(currentNode = this) {
+    const wordsFound = new Set();
+    
+    const depthFirstSearch = (node, letters=[]) => {
+      const lettersFound = [].concat(letters);
+
+      if(node.letter) {
+        lettersFound.push(node.letter);
+        if(node.terminating) {
+          wordsFound.add(lettersFound.join(''));
+        }
+      }
+
+      for(let child in node.children) {
+        depthFirstSearch(node.children[child], lettersFound);
+      }
+    };
+    
+    depthFirstSearch(currentNode);
+    
+    return wordsFound;
+  }
+  
+  addLetters(word) {
+    if(word.length < 1) return word;
+    
+    const firstLetter = word[0];
+    const remaining = word.substr(1);
+    const terminating = word.length === 1;
+  
+    if(this.children[firstLetter]) {
+      this.children[firstLetter].addLetters(remaining);
+    } else {
+      this.children[firstLetter] = new Trie(firstLetter, terminating);
+      this.children[firstLetter].addLetters(remaining);
+    }
   }
   
 }
-
-
-const trie = new TrieNode('beer');
-trie.addWord('bear');
-trie.addWord('bat');
-
-console.log('%j', trie);
