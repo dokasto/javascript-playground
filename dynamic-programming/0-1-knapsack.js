@@ -3,6 +3,7 @@
  */
 // assume Weight = [];
 // assume value = [];
+// Order(nc)
 const KS = (index, totalWeight) => {
 	if (index === 0 || totalWeight === 0) return 0;
 	if(weight[index] > totalWeight) {
