@@ -1,14 +1,14 @@
-const lcs = (a, b) => {
-  const aSub = a.substr(0, a.length - 1);
-  const bSub = b.substr(0, b.length - 1);
- 
-  if (a.length === 0 || b.length === 0) {
-    return '';
-  } else if (a.charAt(a.length - 1) === b.charAt(b.length - 1)) {
-    return lcs(aSub, bSub) + a.charAt(a.length - 1);
+
+const lcs = (a, b, aLen, bLen) => {
+  let result;
+  if (aLen === 0 || bLen === 0) {
+    result = 0;
+  } else if (a[aLen-1] === b[bLen -1]) {
+    result = 1 + lcs(a, b, aLen - 1, bLen - 1);
   } else {
-    var x = lcs(a, bSub);
-    var y = lcs(aSub, b);
-    return (x.length > y.length) ? x : y;
+    const aLcs = lcs(a, b, aLen -1, bLen);
+    const bLcs = lcs(a, b, aLen, bLen -1);
+    result = Math.max(aLcs, bLcs);
   }
+  return result;
 };
