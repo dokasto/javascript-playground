@@ -3,26 +3,18 @@
  * Selection sort
  */
 
- // In place
- const selectionSort = collection => {
-	 let isSorted = false;
-	 let position = 0;
-	 let unsorted;
-	 let biggestItem;
-	 let positionOfBigItem;
-	 let lastItem;
-	 while(!isSorted) {
-		isSorted = true;
-		unsorted = collection.slice(0, collection.length - position);
-		biggestItem = Math.max.apply(this, unsorted);
-		positionOfBigItem = collection.indexOf(biggestItem);
-		 if(positionOfBigItem !== collection.indexOf(collection.length - 1 - position)) {
-			lastItem = collection[collection.length - 1 - position];
-			 collection[collection.length - 1 - position] = biggestItem;
-			 collection[positionOfBigItem] = lastItem;
-			 isSorted = false;
-			 position++;
-		 }
-	 }
-	 return collection;
- };
+const selectionSort = list => {
+  let isSorted = false;
+  let pointer = 0;
+  while(!isSorted || pointer < list.length) {
+    isSorted = true;
+    const smallest = Math.min.apply(null, list.slice(pointer));
+    const smallestIndex = list.indexOf(smallest);
+    if (list[smallestIndex] !== list[pointer]) {
+      [list[smallestIndex], list[pointer]] = [list[pointer], list[smallestIndex]];
+      isSorted = false;
+    }
+    pointer++;
+  }
+  return list;
+};
