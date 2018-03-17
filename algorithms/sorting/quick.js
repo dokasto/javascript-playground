@@ -1,5 +1,5 @@
 const quickSort = list => {
-  
+  if (list.length < 2) return list;
   const pivot = list[0];
   const lesser = [];
   const greater = [];
