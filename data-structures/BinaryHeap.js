@@ -1,72 +1,52 @@
-// left i * 2;
-// right i * 2 + 1
-// parent i / 2
-
 class MinHeap {
   
-  constructor() {
-    this.heap = [null];
+  constructor(k) {
+    this.nodes = [];
+    this.k = k;
   }
   
-  insert(value) {
-    this.heap.push();
-    if (this.heap.length > 2) this.bubbleUp();
-  }
-  
-  remove() {
-    const smallest = this.heap[1];
-    
-    const lastPos = this.heap.length - 1;
-    
-    const lastValue = this.heap[lastPos];
-    
-    this.heap.slice(lastPos, 1);
-    
-    this.heap[1] = lastValue;
-    
-    this.bubbleDown();
-    
-    return smallest;
-  }
-  
-  bubbleDown() {
-    let idx = 1;
-    let left = idx * 2;
-    let right = (idx * 2) + 1;
-    
-    while(this.heap[idx] >= this.heap[left] || this.heap[idx] >= this.heap[right]) {
-      if(this.heap[left] < this.heap[right]) {
-        [this.heap[left], this.heap[idx]] = [this.heap[idx], this.heap[left]];
-        idx = idx * 2;
-      } else {
-        [this.heap[right], this.heap[idx]] = [this.heap[idx], this.heap[right]];
-        idx = (idx * 2) + 1;
+  add(element) {
+    if (this.nodes.length === this.k) {
+      if (element > this.nodes[0]) {
+        this.nodes[0] = element;
+        this.bubbleDown(0);
       }
-      
-      left = idx * 2;
-      right = (idx * 2) + 1;
-      
-      if(this.heap[left] === undefined || this.heap[right] === undefined) break;
-      
+    } else {
+      this.nodes.push(element);
+      this.bubbleUp(this.nodes.length -1);
     }
-          
-  }
-  
-  bubbleUp() {
-    let currIndex = this.heap.length - 1;
-    let parentIndex = Math.floor(currIndex / 2);
     
-    while(this.heap[currIndex] < this.heap[parentIndex]) {
-      if(currIndex >= 1) {
-       [this.heap[parent], this.heap[item]] = [this.heap[item], this.heap[parent]]; 
-        if (parentIndex > 1) {
-          currentIndex = parent;
-          parentIndex = Math.floor(currentIndex / 2);
-        } else {
-          break;
-        }
-      }
-    } 
+    return this.nodes[0];
   }
   
+  bubbleUp(index) {
+    const parent = Math.floor((index - 1) / 2);
+    
+    if (parent > -1 && this.nodes[index] < this.nodes[parent]) {
+      this.swap(index, parent);
+      this.bubbleUp(parent);
+    }
+  }
+  
+  bubbleDown(index) {
+    const leftChild = (2 * index) + 1;
+    const rightChild = (2 * index) + 2;
+    
+    if (this.nodes[leftChild] < this.nodes[index]) {
+      this.swap(index, leftChild);
+      this.bubbleDown(leftChild);
+    } else if (this.nodes[rightChild] < this.nodes[index]) {
+      this.swap(index, rightChild);
+      this.bubbleDown(rightChild);
+    }
+  }
+  
+  swap(childIndex, parentIndex) {
+    const child = this.nodes[childIndex];
+    const parent = this.nodes[parentIndex];
+    
+    this.nodes[childIndex] = parent;
+    this.nodes[parentIndex] = child;
+  }
+
 }
