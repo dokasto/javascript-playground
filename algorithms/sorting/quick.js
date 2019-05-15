@@ -15,3 +15,12 @@ const quickSort = list => {
   
   return quickSort(lesser).concat(pivot, quickSort(greater));
 };
+
+
+I B C A K A
+D R F C E A
+G H O E A D
+
+going down
+
+
